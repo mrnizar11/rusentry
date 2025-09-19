@@ -234,10 +234,33 @@
         
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Form submission logic would go here
+            
+            // Get form data
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                birthDate: document.getElementById('birthDate').value,
+                specialty: document.getElementById('specialty').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                nationality: document.getElementById('nationality').value
+            };
+
+            // Construct email body
+            const emailBody = `New Student Registration:\n\n` +
+                             `Full Name: ${formData.fullName}\n` +
+                             `Date of Birth: ${formData.birthDate}\n` +
+                             `Specialty: ${formData.specialty}\n` +
+                             `Email: ${formData.email}\n` +
+                             `Phone: ${formData.phone}\n` +
+                             `Nationality: ${formData.nationality}`;
+
+            // Send email using mailto link
+            const mailtoLink = `mailto:mohamedmesselka31@gmail.com?subject=New Student Registration&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+
+            // Show confirmation
             alert('Thank you for registering with RusEntry! Our specialists will contact you shortly.');
-            // In a real implementation, this would send the form data to your server
-            console.log('Form data would be sent to server here');
+            console.log('Form data sent via email');
         });
     </script>
 </body>
